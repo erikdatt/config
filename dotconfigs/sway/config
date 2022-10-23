@@ -1,0 +1,23 @@
+#Variables#
+set $mod Mod4
+set $next_or_new swaymsg -r -t get_workspaces | jq -r --arg OUTPUT $(swaymsg -t get_outputs -r | jq -r '.[] | select(.focused == true) | .name') '(. | (max_by(.num) | .num)) as $max | [.[] | select(.output == $OUTPUT)] | (max_by(.num) | .num) as $maxOutput | (.[] | select(.focused == true) | .num) as $current | if $maxOutput > $current then "next_on_output" else $max + 1 end'
+
+#Monitor positions#
+output DP-2 resolution 1280x1024 position 0 0
+output DP-1 resolution 1920x1080 position 1280 0 
+
+#Binds#
+bindsym $mod+F3 exec swaymsg "workspace $($next_or_new)"
+bindsym $mod+F12 exec "pactl set-source-volume alsa_input.usb-046d_081d_D4539CD0-00.mono-fallback 100% | pactl set-source-volume easyeffects_source 100%"
+bindsym $mod+z exec "pactl set-sink-mute alsa_output.usb-Generic_USB_Audio-00.HiFi__hw_Audio_1__sink toggle"
+bindsym $mod+x exec "pactl set-source-mute alsa_input.usb-046d_081d_D4539CD0-00.mono-fallback toggle | pactl set-source-mute easyeffects_source toggle"
+bindsym $mod+F2 exec librewolf
+bindsym $mod+Control+Shift+Right move workspace to output right
+bindsym $mod+Control+Shift+Left move workspace to output left
+
+#Config
+include $HOME/.config/sway/config.d/*
+
+gaps inner 0
+gaps outer 0
+exec_always xrandr --output XWAYLAND0 --primary

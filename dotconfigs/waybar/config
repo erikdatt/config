@@ -1,0 +1,119 @@
+// Global 
+{
+    "layer": "top",
+    "position": "bottom",
+    "margin-left": 0,
+    "margin-right": 0,
+    "height": 30,
+
+
+//Left
+    "modules-left": [
+        "sway/mode",       
+	"custom/power",
+	"custom/launcher",
+	"custom/terminal",
+	//"custom/launcher",
+	"custom/files",
+	"custom/firefox",
+	//"custom/newWork",
+	"sway/workspaces",
+	"custom/newWork",
+
+
+    ],
+    "custom/power": {
+        "format":" ⏻ ",
+        "on-click": "exec ~/.config/waybar/scripts/power-menu.sh",
+        "tooltip": false,
+    },
+    "custom/terminal": {
+        "format": "|  ",
+        "on-click": "exec xfce4-terminal",
+        "tooltip": false
+    },
+    "custom/launcher": {
+        "format":"    ",
+        "on-click": "exec wofi -c ~/.config/wofi/config -I",
+        "tooltip": false,
+    },
+    "custom/files": {
+        "format": " ",
+        "on-click": "exec thunar",
+        "tooltip": false
+    },
+    "custom/firefox": {
+        "format": " |",
+        "on-click": "exec librewolf",
+        "tooltip": false
+    },
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "disable-markup" : false,
+        "all-outputs": true,
+        "format": " {name} ",
+    },
+    "custom/newWork": {
+	"format": "+",
+	"on-click": "exec ~/.config/waybar/scripts/newWorkspace.sh",
+	"tooltip": false,
+    },
+    "sway/mode": {
+        "format": "{}",
+        "tooltip": false
+    },
+
+
+
+//Right
+    "modules-right": [
+        "network",
+	"pulseaudio",
+	"pulseaudio#mic",
+	"cpu",
+        "memory",
+	"clock",
+    ],
+    "pulseaudio": {
+        "format": "  {volume}%",
+        "format-muted": " 婢 0%",
+        "on-click": "pavucontrol",
+    },
+    "pulseaudio#mic": {
+	"format": "{format_source}",
+	"format-source": " {volume}%",
+	"format-source-muted": " 0%",
+	"on-click": "pactl set-source-mute alsa_input.usb-046d_081d_D4539CD0-00.mono-fallback toggle | pactl set-source-mute easyeffects_source toggle",
+    },
+    "cpu": {
+        "interval": 5,
+	"format": "CPU: {usage}% ",
+	"on-click": "xfce4-terminal -e 'htop'",
+        "states": {
+            "warning": 70,
+            "critical": 90,
+        },        
+    },
+    "memory": {
+        "interval": 5,
+	"format": "RAM: {used:0.1f}Gb / {total:0.1f}Gb ",
+        "on-click": "xfce4-terminal -e 'htop'",
+	"tooltip-format": "{}% Used",
+        "states": {
+            "warning": 70,
+            "critical": 90,
+        },
+    },
+    "network": {
+	"interval": 5,
+	"format-ethernet": " ",
+	"format-wifi": "(Wireless) {signalStrength}% ",
+	"tooltip-format": "{ipaddr}",
+	"on-click": "xfce4-terminal -e 'nmtui'",
+    },
+    "clock": {
+        "interval": 10,
+	"format": "{:%a, %h %d %Y | %I:%M %p}",
+        "tooltip-format": "{:%m-%d-%Y}"
+    },
+}    

@@ -1,0 +1,36 @@
+/*Colors*/
+
+@define-color base        #313244;
+@define-color base1       #404552;
+@define-color black       #000000;
+@define-color orange      #d16602;
+@define-color red         #ff0000;
+
+/*Purple Theme*/
+/*
+@define-color highlight   #64238c;
+@define-color highlight1  #732e9e;
+@define-color highlight2  #7e38aa;
+@define-color highlight3  #9348c2;
+@define-color highlight4  #a457d4;
+@define-color highlight5  #ad63db;
+*/
+
+
+/*Blue Theme*/
+/*
+@define-color highlight   #004bbf;
+@define-color highlight1  #0046b3;
+@define-color highlight2  #0041a6;
+@define-color highlight3  #003c99;
+@define-color highlight4  #00378c;
+@define-color highlight5  #003280;*/
+
+
+/*Fall theme*/
+@define-color highlight   #326400;
+@define-color highlight1  #647d00;
+@define-color highlight2  #7d7d00;
+@define-color highlight3  #966400;
+@define-color highlight4  #af6400;
+@define-color highlight5  #c84b00;
